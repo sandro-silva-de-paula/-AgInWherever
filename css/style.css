@@ -6,44 +6,57 @@
     grid-template-rows: 85px repeat(14, 85px);
     gap: 2px;
     padding: 20px;
+    margin-top: 150px;
 
   }
 
   .calendar>div {
     background: #eee;
     text-align: center;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    
+
   }
 
   .calendar>div:nth-child(1) {
     background: white;
+    width: 50px;
+    height: 60px;
+    margin-top: 10px;
+
   }
   .calendar>div:nth-child(2) {
     background: white;
   }
   .calendar>div:nth-child(3) {
     background: white;
+
   }
 
   .calendar>div:nth-child(4) {
     background: white;
+
   }
 
   .calendar>div:nth-child(5) {
     background: white;
+
   }
 
   .calendar>div:nth-child(6) {
     background: white;
+
   }
   .calendar>div:nth-child(7) {
     background: white;
+
   }
 
   .calendar>div:nth-child(8) {
     background: white;
+
   }
 
   .hora {
@@ -85,6 +98,7 @@
     height: 150px;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    position: fixed;
   }
 
   .horario {
