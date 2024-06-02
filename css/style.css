@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
 .calendar {
     grid-area: agenda;
     /* background: #e6e0e0ac; */
@@ -10,6 +15,7 @@
 
   }
 
+
   .calendar>div {
     background: #eee;
     text-align: center;
@@ -20,13 +26,15 @@
 
   }
 
-  .calendar>div:nth-child(1) {
+
+   .calendar>div:nth-child(1) {
     background: white;
     width: 50px;
     height: 60px;
     margin-top: 10px;
 
-  }
+  } 
+  
   .calendar>div:nth-child(2) {
     background: white;
   }
@@ -57,7 +65,7 @@
   .calendar>div:nth-child(8) {
     background: white;
 
-  }
+  }  
 
   .hora {
     font-family: 'Courier New', Courier, monospace;
@@ -93,7 +101,7 @@
 
   .menu-top {
     grid-area: menu-top;
-    /* background: #ccc; */
+    background: white;
     width: 100%;
     height: 150px;
     padding: 10px;
@@ -122,14 +130,6 @@ nav{
 
 }
 .nav-week {
-    /* background: rgb(206, 198, 198);
-    width: 150px;
-    height: 30px;
-    border-radius: 12px;
-    border: 1px solid gray;
-    color: rgb(73, 70, 70);
-    font-family: 'Courier New', Courier, monospace; */
-
   border: none;
   color: black;
   padding: 16px 32px;
@@ -157,3 +157,67 @@ nav{
     position: absolute;
     top:0;
   }
+
+
+/*teste indexcopy.html
+  .top-grid {
+    display: grid;
+    background: #e6e0e0ac;
+    width: 100%;
+    grid-template-columns: 50px repeat(7, auto);
+    gap: 2px;
+    padding: 20px;
+    margin-top: 150px;
+    position: fixed;
+
+  }
+
+  .top-grid >div {
+    background: #eee;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+
+   .top-grid >div:nth-child(1) {
+    background: white;
+    width: 50px;
+    height: 60px;
+    margin-top: 10px;
+
+  } 
+  
+  .top-grid >div:nth-child(2) {
+    background: white;
+  }
+  .top-grid >div:nth-child(3) {
+    background: white;
+
+  }
+
+  .top-grid >div:nth-child(4) {
+    background: white;
+
+  }
+
+  .top-grid >div:nth-child(5) {
+    background: white;
+
+  }
+
+  .top-grid >div:nth-child(6) {
+    background: white;
+
+  }
+  .top-grid >div:nth-child(7) {
+    background: white;
+
+  }
+
+  .top-grid >div:nth-child(8) {
+    background: white;
+
+  }  
