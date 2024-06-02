@@ -6,6 +6,7 @@ const daysWeek = ['Dom', 'Seg','Ter','Qua','Qui','Sex','Sab']
 
 function defWeek(nav){
 
+    
     let today = new Date();
     let offset = today.getDay();
     let fristDay = new Date();
