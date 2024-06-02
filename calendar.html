@@ -1,0 +1,299 @@
+<!-- 
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth
+
+  https://css-tricks.com/snippets/css/complete-guide-grid/
+  -->
+
+
+  
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .calendar {
+      grid-area: agenda;
+      /* background: #ccc; */
+      display: grid;
+      grid-template-columns: 50px repeat(7, auto);
+      grid-template-rows: 55px repeat(14, 85px);
+      gap: 2px;
+      padding: 20px;
+
+    }
+
+    .calendar>div {
+      background: #eee;
+      text-align: center;
+      padding: 5px;
+    }
+
+    .hora {
+      background: #b70c0c;
+      font-family: 'Courier New', Courier, monospace;
+      /* color: #ccc; */
+      font-size: 12px;
+      align-content: space-evenly;
+    }
+
+    .day-title {
+      font-size: 20px;
+      margin-top: 5px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .main-container {
+      display: grid;
+      grid-template-columns: 15% 1fr;
+      grid-template-areas: 'menu-top menu-top'
+        'menu-left agenda';
+    }
+
+    .menu-left {
+      grid-area: menu-left;
+      /* background: #ccc;; */
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      align-content: flex-start;
+
+    }
+
+    .menu-top {
+      grid-area: menu-top;
+      /* background: #ccc; */
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+    }
+
+    .horario {
+      background: #b70c0c;
+      align-content: space-evenly;
+      font-family: 'Courier New', Courier, monospace;
+
+    }
+
+    .next-week {
+      background: rgb(206, 198, 198);
+      width: 150px;
+      height: 30px;
+      border-radius: 12px;
+      border: 1px solid gray;
+      color: rgb(73, 70, 70);
+
+    }
+
+    .logo {
+      width: 180px;
+      height: 180px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="menu-left">
+      <button class="next-week">Proxima Semana >></button>
+      <button class="next-week">Semana Atual</button>
+      <button class="next-week">
+        << Semana Anterio </button>
+    </div>
+    <div class="menu-top">
+      <img src="images/b_gold_redondo.png" class="logo">
+    </div>
+
+    <div class="calendar">
+      <div class="horario"></div>
+      <div>
+        <h4 class="day-title" id="day-1">May 3st</h4>
+      </div>
+      <div>
+        <h4 class="day-title" id="day-2">May 1st</h4>
+      </div>
+      <div>
+        <h4 class="day-title" id="day-3">May 1st</h4>
+      </div>
+      <div>
+        <h4 class="day-title" id="day-4">May 1st</h4>
+      </div>
+      <div>
+        <h4 class="day-title" id="day-5">May 1st</h4>
+      </div>
+      <div>
+        <h4 class="day-title" id="day-6">May 1st</h4>
+      </div>
+      <div>
+        <h4 class="day-title" id="day-7">May 1st</h4>
+      </div>
+
+      <div class="horario">7am</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">8am</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">9am</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">10am</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">11am</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">12pm</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">1pm</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">2pm</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">3pm</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">4pm</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">5pm</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">6pm</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">7pm</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="horario">8pm</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+
+    </div>
+  </div>
+
+  <script>
+    const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+    const daysWeek = ['Domingo', 'Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sabado']
+
+
+
+    let today = new Date();
+    let offset = today.getDay();
+
+    let fristDay = new Date();
+
+    fristDay.setDate(fristDay.getDate() - offset);
+    console.log(fristDay);
+
+    for (let i = 0; i <= 6; i++) {
+
+      let displayDia = `${daysWeek[i]} ${fristDay.getDate()} `
+      // ${months[fristDay.getMonth()]}`;
+      switch (i) {
+        case 0: document.getElementById('day-1').innerText = displayDia;
+        case 1: document.getElementById('day-2').innerText = displayDia;
+        case 2: document.getElementById('day-3').innerText = displayDia;
+        case 3: document.getElementById('day-4').innerText = displayDia;
+        case 4: document.getElementById('day-5').innerText = displayDia;
+        case 5: document.getElementById('day-6').innerText = displayDia;
+        case 6: document.getElementById('day-7').innerText = displayDia;
+      };
+      console.log(displayDia);
+      fristDay.setDate(fristDay.getDate() + 1);
+
+    }
+
+
+  </script>
+
+</body>
+
+</html>
