@@ -1,12 +1,12 @@
 const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-const daysWeek = ['Dom', 'Seg','Ter','Qua','Qui','Sex','Sab']
+const daysWeek = ['Dom.', 'Seg.','Ter.','Qua.','Qui.','Sex.','Sab.']
 
 
 
 
 function defWeek(nav){
 
-    
+
     let today = new Date();
     let offset = today.getDay();
     let fristDay = new Date();
@@ -74,8 +74,8 @@ function makeElemtDay(dia,displayDia){
 
     }else{
         element.style.color = 'black';
-        element.style.borderRadius = 'none';
-        element.style.background = 'none';
+        element.style.borderRadius = '50px';
+        element.style.background = '#eee';
     
         };
 };

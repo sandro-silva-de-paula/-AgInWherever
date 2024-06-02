@@ -1,9 +1,9 @@
 .calendar {
     grid-area: agenda;
-    /* background: #ccc; */
+    /* background: #e6e0e0ac; */
     display: grid;
     grid-template-columns: 50px repeat(7, auto);
-    grid-template-rows: 55px repeat(14, 85px);
+    grid-template-rows: 85px repeat(14, 85px);
     gap: 2px;
     padding: 20px;
 
@@ -12,22 +12,53 @@
   .calendar>div {
     background: #eee;
     text-align: center;
-    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .calendar>div:nth-child(1) {
+    background: white;
+  }
+  .calendar>div:nth-child(2) {
+    background: white;
+  }
+  .calendar>div:nth-child(3) {
+    background: white;
+  }
+
+  .calendar>div:nth-child(4) {
+    background: white;
+  }
+
+  .calendar>div:nth-child(5) {
+    background: white;
+  }
+
+  .calendar>div:nth-child(6) {
+    background: white;
+  }
+  .calendar>div:nth-child(7) {
+    background: white;
+  }
+
+  .calendar>div:nth-child(8) {
+    background: white;
   }
 
   .hora {
-    background: #b70c0c;
     font-family: 'Courier New', Courier, monospace;
-    /* color: #ccc; */
     font-size: 12px;
     align-content: space-evenly;
   }
 
   .day-title {
     font-size: 15px;
-    margin-top: 5px;
+    margin-top: 10%;
     font-family: 'Courier New', Courier, monospace;
     width: 60px;
+    height: 60px;
+    align-content: center;
   }
 
   .main-container {
@@ -53,6 +84,7 @@
     width: 100%;
     height: 150px;
     padding: 10px;
+    border-bottom: 1px solid #ccc;
   }
 
   .horario {
@@ -65,22 +97,42 @@ nav{
     display: flex;
     position: relative;
     justify-content: space-evenly;
-    margin-top: 120px;
+    margin-top: 100px;
+
 }
 .nav-week {
-    background: rgb(206, 198, 198);
+    /* background: rgb(206, 198, 198);
     width: 150px;
     height: 30px;
     border-radius: 12px;
     border: 1px solid gray;
     color: rgb(73, 70, 70);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace; */
+
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: #eee;
    
 
   }
 
+  .nav-week:hover {
+    background-color: #ccc;
+    color: white;
+  }
+  
+
   .logo {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     position: absolute;
+    top:0;
   }
