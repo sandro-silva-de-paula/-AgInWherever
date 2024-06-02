@@ -88,9 +88,16 @@
   }
 
   .horario {
-    background: #b70c0c;
+    /* background: #b70c0c; */
     align-content: space-evenly;
     font-family: 'Courier New', Courier, monospace;
+}
+
+.month {
+  align-content: space-evenly;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+  z-index: 2;
 }
 
 nav{

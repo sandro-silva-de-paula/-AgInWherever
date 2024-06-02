@@ -22,6 +22,9 @@ function defWeek(nav){
             
     fristDay.setDate(fristDay.getDate()- offset);
     // console.log(fristDay);
+    let displayMonth =document.getElementById('month');
+       displayMonth.innerText = `${months[fristDay.getMonth()]} de ${fristDay.getFullYear()}`;
+
 
     for(let i=0; i<=6; i++){
 
