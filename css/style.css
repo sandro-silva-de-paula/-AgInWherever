@@ -1,78 +1,64 @@
-*{
-  margin: 0;
-  padding: 0;
-}
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  section {
+    display: flex;
+    align-items: stretch;
+    min-height: calc(100vh - 100px);
+  }
 
-.calendar {
+  header {
+    height: 100px;
+
+  }
+
+  aside {
+    flex-basis: 30%;
+    max-width: 250px;
+    align-self: stretch;
+  }
+
+  main {
+    flex-grow: 1;
+    align-self: stretch;
+    padding: 15px;
+  }
+
+  nav {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .calendar-header {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50px repeat(7, auto);
+    gap: 2px;
+    margin: 15px 0;
+    /* justify-content: space-evenly; */
+  }
+  
+  .calendar-body {
     grid-area: agenda;
     /* background: #e6e0e0ac; */
     display: grid;
     grid-template-columns: 50px repeat(7, auto);
     grid-template-rows: 85px repeat(14, 85px);
     gap: 2px;
-    padding: 20px;
-    margin-top: 150px;
-
   }
-
-
-  .calendar>div {
-    background: #eee;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    
-
-  }
-
-
-   .calendar>div:nth-child(1) {
-    background: white;
-    width: 50px;
-    height: 60px;
-    margin-top: 10px;
-
-  } 
   
-  .calendar>div:nth-child(2) {
-    background: white;
-  }
-  .calendar>div:nth-child(3) {
-    background: white;
-
-  }
-
-  .calendar>div:nth-child(4) {
-    background: white;
-
-  }
-
-  .calendar>div:nth-child(5) {
-    background: white;
-
-  }
-
-  .calendar>div:nth-child(6) {
-    background: white;
-
-  }
-  .calendar>div:nth-child(7) {
-    background: white;
-
-  }
-
-  .calendar>div:nth-child(8) {
-    background: white;
-
-  }  
-
+  
+  
   .hora {
     font-family: 'Courier New', Courier, monospace;
     font-size: 12px;
     align-content: space-evenly;
   }
-
+  
   .day-title {
     font-size: 15px;
     margin-top: 10%;
@@ -80,144 +66,82 @@
     width: 60px;
     height: 60px;
     align-content: center;
+    border-radius: 50px;
+    background: #eee;
   }
-
-  .main-container {
-    display: grid;
-    grid-template-columns: 15% 1fr;
-    grid-template-areas: 'menu-top menu-top'
-      'menu-left agenda';
-  }
-
-  .menu-left {
-    grid-area: menu-left;
-    /* background: #ccc;; */
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    align-content: flex-start;
-
-  }
-
-  .menu-top {
-    grid-area: menu-top;
-    background: white;
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    position: fixed;
-  }
-
+  
   .horario {
     /* background: #b70c0c; */
     align-content: space-evenly;
     font-family: 'Courier New', Courier, monospace;
-}
-
-.month {
-  align-content: space-evenly;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: large;
-  z-index: 2;
-}
-
-nav{
-    display: flex;
-    position: relative;
-    justify-content: space-evenly;
-    margin-top: 100px;
-
-}
-.nav-week {
-  border: none;
-  color: black;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  background-color: #eee;
+  }
+  
+  .month {
+    align-content: space-evenly;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10pt;
+  }
+  
+  
+  .calendar-header>div {
+    background-color: white;
+    text-align: center;
    
+  }
+/*   
+  .calendar-header>div>h4 {
+    width:100%;
+  } */
+  
+  .calendar-body>div:nth-child(n) {
+    background-color: #ddd;
+    text-align: center;
+  }
+  
+  .calendar-body>div:nth-child(16n+1),
+  .calendar-body>div:nth-child(16n+2),
+  .calendar-body>div:nth-child(16n+3),
+  .calendar-body>div:nth-child(16n+4),
+  .calendar-body>div:nth-child(16n+5),
+  .calendar-body>div:nth-child(16n+6),
+  .calendar-body>div:nth-child(16n+7),
+  .calendar-body>div:nth-child(16n+8) {
+    background-color: #ccc;
+    text-align: center;
+  }
+  
+  
+  .today {
+    background-color: blue;
+    color:white;
 
   }
-
+  
+  
+  .nav-week {
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #eee;
+  
+  
+  }
+  
   .nav-week:hover {
     background-color: #ccc;
     color: white;
   }
   
-
-  .logo {
-    width: 160px;
-    height: 160px;
-    position: absolute;
-    top:0;
-  }
-
-
-/*teste indexcopy.html
-  .top-grid {
-    display: grid;
-    background: #e6e0e0ac;
-    width: 100%;
-    grid-template-columns: 50px repeat(7, auto);
-    gap: 2px;
-    padding: 20px;
-    margin-top: 150px;
-    position: fixed;
-
-  }
-
-  .top-grid >div {
-    background: #eee;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-  }
-
-
-   .top-grid >div:nth-child(1) {
-    background: white;
-    width: 50px;
-    height: 60px;
-    margin-top: 10px;
-
-  } 
   
-  .top-grid >div:nth-child(2) {
-    background: white;
+  .logo {
+    width: 250px;
+    height: 250px;
+    /* position: absolute; */
   }
-  .top-grid >div:nth-child(3) {
-    background: white;
-
-  }
-
-  .top-grid >div:nth-child(4) {
-    background: white;
-
-  }
-
-  .top-grid >div:nth-child(5) {
-    background: white;
-
-  }
-
-  .top-grid >div:nth-child(6) {
-    background: white;
-
-  }
-  .top-grid >div:nth-child(7) {
-    background: white;
-
-  }
-
-  .top-grid >div:nth-child(8) {
-    background: white;
-
-  }  

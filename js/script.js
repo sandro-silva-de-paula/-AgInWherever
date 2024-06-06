@@ -1,87 +1,122 @@
 const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-const daysWeek = ['Dom.', 'Seg.','Ter.','Qua.','Qui.','Sex.','Sab.']
+const daysWeek = ['Dom.', 'Seg.', 'Ter.', 'Qua.', 'Qui.', 'Sex.', 'Sab.']
+
+// Runs when the page loads
+window.onload = () => {
+    let currentSunday;
+    currentSunday = setWeek('today', currentSunday);
+
+    const previousButtonNode = document.getElementById('previous-week-btn')
+    const thisWeekButtonNode = document.getElementById('this-week-btn');
+    const nextButtonNode = document.getElementById('next-week-btn');
 
 
+    previousButtonNode.onclick = () => {
+        currentSunday = setWeek('previous', currentSunday);
+    }
+
+    thisWeekButtonNode.onclick = () => {
+        currentSunday = setWeek('today', currentSunday);
+    }
+
+    nextButtonNode.onclick = () => {
+        currentSunday = setWeek('next', currentSunday);
+    }
+}
 
 
-function defWeek(nav){
+function setWeek(nav, currentSunday) {
+    switch(nav){
+        case 'previous':
+            currentSunday = getPreviousSunday(currentSunday);
+            break;
+        case 'today':
+            currentSunday = getSunday();
+            break;
+        case 'next':
+            currentSunday = getNextSunday(currentSunday);
+            break;
+    }
 
+    renderMonth(currentSunday);
+    renderDaysOfWeek(currentSunday);
 
-    let today = new Date();
-    let offset = today.getDay();
-    let fristDay = new Date();
-    let actual_day = false;
-    if (nav =='-'){
-        fristDay.setDate(fristDay.getDate()- 7);
-        // console.log('menos');
-    } else if(nav=='+'){
-        // console.log('mais');
-        fristDay.setDate(fristDay.getDate()+ 7);
-        } 
-            
-            
-    fristDay.setDate(fristDay.getDate()- offset);
-    // console.log(fristDay);
-    let displayMonth =document.getElementById('month');
-       displayMonth.innerText = `${months[fristDay.getMonth()]} de ${fristDay.getFullYear()}`;
+    return currentSunday;
+}
 
+function getSunday() {
+    const today = new Date();
+    const offset = today.getDay();
+    const sunday = new Date();
 
-    for(let i=0; i<=6; i++){
+    sunday.setDate(today.getDate() - offset);
 
+    return sunday
+}
 
-        if (i==offset && !nav){
-            actual_day=true;
-        } else {actual_day = false;};
+function getNextSunday(sunday) {
+    const nextSunday = new Date(sunday);
+    nextSunday.setDate(nextSunday.getDate() + 7);
+    return nextSunday;
+}
 
+function getPreviousSunday(sunday) {
+    const previousSunday = new Date(sunday);
+    previousSunday.setDate(previousSunday.getDate() - 7);
+    return previousSunday;
+}
 
-        let displayDia = `${daysWeek[i]} \n ${fristDay.getDate()}  `;
+function renderMonth(sunday) {
+    // Get the node
+    const monthNode = document.getElementById('month');
+    
+    // Get Month for sunday
+    const sundayMonth = months[sunday.getMonth()];
+    
+    // Get Month for saturday
+    const saturday = new Date(sunday);
+    saturday.setDate(sunday.getDate() + 6);    
+    const saturdayMonth = months[saturday.getMonth()];
+    
+    // Compare the two
+    // If they are the same, show month
+    if(saturdayMonth === sundayMonth) {
+        monthString = `${sundayMonth} de ${sunday.getFullYear()}` ;
+    
+    // If they are not, concat and show both
+    } else {
+        monthString = `${sundayMonth}\n\n${saturdayMonth}`;
+    }
+
+    
+    monthNode.innerText = monthString;
+}
+
+function renderDaysOfWeek(sunday) {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    
+    const currentDay = new Date(sunday);
+    currentDay.setHours(0,0,0,0);
+    
+    let dayString;
+    for (let i = 0; i <= 6; i++) {
+        dayNode = document.getElementById(`day-${i+1}`);
+        dayString = `${daysWeek[i]} \n ${currentDay.getDate()}`;
+
+        dayNode.innerText = dayString;
+
+        if(currentDay.getTime() == today.getTime()) {
+            console.log("Found today!!")
+            dayNode.classList.add("today");
+        } else {
+            dayNode.classList.remove("today");
+        }
+
         
-        switch (i) {
-            case 0: 
-                makeElemtDay('day-1',displayDia)
-                break;
-            case 1: 
-                makeElemtDay('day-2',displayDia)
-                break;
-            case 2: 
-                makeElemtDay('day-3',displayDia)
-                break;
-            case 3: 
-                makeElemtDay('day-4',displayDia);
-                break;
-            case 4: 
-                makeElemtDay('day-5',displayDia);
-                break;
-            case 5: 
-                makeElemtDay('day-6',displayDia);
-                break;
-            case 6:
-                makeElemtDay('day-7',displayDia);
-                break;
-                    };
-
-
-      fristDay.setDate(fristDay.getDate() + 1);
-
-
+        currentDay.setDate(currentDay.getDate() + 1);
     };
 
-function makeElemtDay(dia,displayDia){
-    let element =document.getElementById(dia);
-    element.innerText = displayDia;
-
-    if (actual_day && !nav){
-        element.style.color = 'white';
-        element.style.borderRadius= '50px' ;//'10px 100px / 120px';
-        element.style.background = 'blue';
-
-    }else{
-        element.style.color = 'black';
-        element.style.borderRadius = '50px';
-        element.style.background = '#eee';
-    
-        };
-};
-
 }
+
 

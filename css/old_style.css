@@ -1,0 +1,224 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.calendar {
+    grid-area: agenda;
+    /* background: #e6e0e0ac; */
+    display: grid;
+    grid-template-columns: 50px repeat(7, auto);
+    grid-template-rows: 85px repeat(14, 85px);
+    gap: 2px;
+    padding: 20px;
+    margin-top: 238px;
+
+  }
+
+
+ .calendar>div {
+    background: #eee;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+
+  }
+
+
+   .calendar>div:nth-child(1) {
+    background: white;
+    width: 50px;
+    height: 60px;
+    margin-top: 10px;
+
+  } 
+  
+  .calendar>div:nth-child(2) {
+    background: white;
+  }
+  .calendar>div:nth-child(3) {
+    background: white;
+
+  }
+
+  .calendar>div:nth-child(4) {
+    background: white;
+
+  }
+
+  .calendar>div:nth-child(5) {
+    background: white;
+
+  }
+
+  .calendar>div:nth-child(6) {
+    background: white;
+
+  }
+  .calendar>div:nth-child(7) {
+    background: white;
+
+  }
+
+  .calendar>div:nth-child(8) {
+    background: white;
+
+  }  
+
+  .hora {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    align-content: space-evenly;
+  }
+
+  .day-title {
+    font-size: 15px;
+    margin-top: 10%;
+    font-family: 'Courier New', Courier, monospace;
+    width: 60px;
+    height: 60px;
+    align-content: center;
+  }
+
+  .main-container {
+    display: grid;
+    grid-template-columns: 15% 1fr;
+    grid-template-areas: 'menu-top menu-top'
+      'menu-left agenda';
+  }
+
+  .menu-left {
+    grid-area: menu-left;
+    /* background: #ccc;; */
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    align-content: flex-start;
+    /* border-right: 1px solid; */
+
+  }
+
+  .menu-top {
+    grid-area: menu-top;
+    background: white;
+    width: 100%;
+    height: 235px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    display: flex;
+  }
+
+  .horario {
+    /* background: #b70c0c; */
+    align-content: space-evenly;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.month {
+  align-content: space-evenly;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+  z-index: 2;
+}
+
+nav{
+    display: flex;
+    position: fixed;
+    /* justify-content: space-evenly; */
+    margin-top: 300px;
+
+}
+.nav-week {
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: #eee;
+   
+
+  }
+
+  .nav-week:hover {
+    background-color: #ccc;
+    color: white;
+  }
+  
+
+  .logo {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top:0;
+  }
+
+
+/*teste indexcopy.html*/
+  .top-grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50px repeat(7, auto);
+    gap: 2px;
+    position: fixed;
+    top: 150px;
+    left:310px
+
+  }
+
+  .top-grid >div {
+    background: #eee;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+
+   .top-grid >div:nth-child(1) {
+    background: white;
+    width: 50px;
+    height: 60px;
+    margin-top: 10px;
+
+  } 
+  
+  .top-grid >div:nth-child(2) {
+    background: white;
+  }
+  .top-grid >div:nth-child(3) {
+    background: white;
+
+  }
+
+  .top-grid >div:nth-child(4) {
+    background: white;
+
+  }
+
+  .top-grid >div:nth-child(5) {
+    background: white;
+
+  }
+
+  .top-grid >div:nth-child(6) {
+    background: white;
+
+  }
+  .top-grid >div:nth-child(7) {
+    background: white;
+
+  }
+
+  .top-grid >div:nth-child(8) {
+    background: white;
+
+  }  
