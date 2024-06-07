@@ -107,7 +107,6 @@ function renderDaysOfWeek(sunday) {
         dayNode.innerText = dayString;
 
         if(currentDay.getTime() == today.getTime()) {
-            console.log("Found today!!")
             dayNode.classList.add("today");
         } else {
             dayNode.classList.remove("today");
@@ -119,4 +118,29 @@ function renderDaysOfWeek(sunday) {
 
 }
 
+function showDay(id_){
+    let divNode =document.getElementById(id_);
+    //buscar conteudo do elemento dia pra mostara nesta div
+    let day =id_.substring(id_.length -1);
+    let dayNode = document.getElementById(`day-${day}`);
+    divNode.innerText=dayNode.innerText;
+    setTimeout( () => {
+         divNode.innerText='';
+        },500);
+    
+    };
 
+function clearDay(id_){
+    // let divNode =document.getElementById(id_);
+    // divNode.innerText='';
+};
+
+function creatForm(id_){
+    let divNode =document.getElementById(id_);
+    const formNod =document.createElement('form')
+    formNod.innerHTML='<input type="text" id="pname" name="pname" placeholder="Digite o nome do paciente"> <br> \
+     <input type="text" id="psname" sname="spname" placeholder="Digite o sobrenome do paciente">  <br> \
+      <input type="submit" value="Submit"> ' 
+
+    divNode.appendChild(formNod);
+}

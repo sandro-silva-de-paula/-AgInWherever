@@ -39,7 +39,6 @@
     grid-template-columns: 50px repeat(7, auto);
     gap: 2px;
     margin: 15px 0;
-    /* justify-content: space-evenly; */
   }
   
   .calendar-body {
@@ -68,6 +67,7 @@
     align-content: center;
     border-radius: 50px;
     background: #eee;
+
   }
   
   .horario {
@@ -77,16 +77,17 @@
   }
   
   .month {
-    align-content: space-evenly;
+    /* align-content: space-evenly; */
     font-family: 'Courier New', Courier, monospace;
     font-size: 10pt;
   }
   
   
   .calendar-header>div {
+    display: flex;
     background-color: white;
     text-align: center;
-   
+    justify-content:center;
   }
 /*   
   .calendar-header>div>h4 {
@@ -98,6 +99,14 @@
     text-align: center;
   }
   
+  .calendar-body>div {
+    background-color: #ddd;
+    text-align: center;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  
   .calendar-body>div:nth-child(16n+1),
   .calendar-body>div:nth-child(16n+2),
   .calendar-body>div:nth-child(16n+3),
@@ -108,8 +117,13 @@
   .calendar-body>div:nth-child(16n+8) {
     background-color: #ccc;
     text-align: center;
-  }
-  
+    }
+    
+    .calendar-body>div:hover { 
+      background-color: blue;
+      color: white;
+    }
+    
   
   .today {
     background-color: blue;
