@@ -94,15 +94,14 @@
     width:100%;
   } */
   
-  .calendar-body>div:nth-child(n) {
+  /* .calendar-body>div:nth-child(n) {
     background-color: #ddd;
     text-align: center;
   }
-  
+   */
   .calendar-body>div {
     background-color: #ddd;
     text-align: center;
-    transition-duration: 0.4s;
     cursor: pointer;
   }
   

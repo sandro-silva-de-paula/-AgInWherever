@@ -118,29 +118,30 @@ function renderDaysOfWeek(sunday) {
 
 }
 
-function showDay(id_){
-    let divNode =document.getElementById(id_);
-    //buscar conteudo do elemento dia pra mostara nesta div
-    let day =id_.substring(id_.length -1);
+function showDay(divNod){
+    let day =divNod.id.substring(divNod.id.length -1);
     let dayNode = document.getElementById(`day-${day}`);
-    divNode.innerText=dayNode.innerText;
-    setTimeout( () => {
-         divNode.innerText='';
-        },500);
-    
+     divNod.title=dayNode.innerText;
     };
 
-function clearDay(id_){
-    // let divNode =document.getElementById(id_);
-    // divNode.innerText='';
-};
+// function clearDay(id_){
+//     let divNode =document.getElementById(id_);
+//     divNode.innerText='';
+// };
 
-function creatForm(id_){
-    let divNode =document.getElementById(id_);
+function creatForm(divNode){
     const formNod =document.createElement('form')
-    formNod.innerHTML='<input type="text" id="pname" name="pname" placeholder="Digite o nome do paciente"> <br> \
-     <input type="text" id="psname" sname="spname" placeholder="Digite o sobrenome do paciente">  <br> \
-      <input type="submit" value="Submit"> ' 
+    formNod.innerHTML=`<input type="text" id="pname" name="pname" placeholder="Digite o nome do paciente"> <br> \
+     <input type="text" id="psname" sname="spname" placeholder="Digite o sobrenome">  <br> \
+     <input type="submit" name= ${divNode.id} value="submit" onclick="saveSchedule(this)"></button> ` 
 
     divNode.appendChild(formNod);
+}
+
+function saveSchedule(id_){
+    let divNode =document.getElementById(id_.name);
+    divNode.innerText=id_.name;
+   
+
+
 }
