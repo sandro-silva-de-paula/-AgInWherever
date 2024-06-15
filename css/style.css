@@ -118,6 +118,13 @@
     text-align: center;
     }
     
+    .calendar-body>div:nth-child(1),
+    .calendar-body>div:nth-child(8n+1)
+     {
+      display: flex;
+      background: white;
+      justify-content: end;
+    }
     .calendar-body>div:hover { 
       background-color: blue;
       color: white;
