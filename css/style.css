@@ -89,9 +89,11 @@ nav {
 }
 
 .month {
-  /* align-content: space-evenly; */
   font-family: 'Courier New', Courier, monospace;
-  font-size: 10pt;
+  font-size: 8pt;
+  align-self: center;
+
+
 }
 
 
