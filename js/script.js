@@ -1,47 +1,56 @@
 const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 const daysWeek = ['Dom.', 'Seg.', 'Ter.', 'Qua.', 'Qui.', 'Sex.', 'Sab.']
 
+let FORM_OPEN = false
+let DATABASE = {}
+let CURRENT_SUNDAY;
+
 // Runs when the page loads
 window.onload = () => {
-    let currentSunday;
-    currentSunday = setWeek('today', currentSunday);
+    setWeek('today');
 
     const previousButtonNode = document.getElementById('previous-week-btn')
     const thisWeekButtonNode = document.getElementById('this-week-btn');
     const nextButtonNode = document.getElementById('next-week-btn');
-
+    const dayNodes =  document.querySelectorAll('.day');
 
     previousButtonNode.onclick = () => {
-        currentSunday = setWeek('previous', currentSunday);
+        setWeek('previous');
     }
 
     thisWeekButtonNode.onclick = () => {
-        currentSunday = setWeek('today', currentSunday);
+        setWeek('today');
     }
 
     nextButtonNode.onclick = () => {
-        currentSunday = setWeek('next', currentSunday);
+        setWeek('next');
     }
+
+
+    for (let i = 0; i < dayNodes.length; i++){
+        dayNodes[i].onclick = createForm;
+        dayNodes[i].onmouseenter = showDay;
+    }
+
 }
 
 
-function setWeek(nav, currentSunday) {
-    switch(nav){
+function setWeek(nav) {
+    switch (nav) {
         case 'previous':
-            currentSunday = getPreviousSunday(currentSunday);
+            CURRENT_SUNDAY = getPreviousSunday();
             break;
         case 'today':
-            currentSunday = getSunday();
+            CURRENT_SUNDAY = getSunday();
             break;
         case 'next':
-            currentSunday = getNextSunday(currentSunday);
+            CURRENT_SUNDAY = getNextSunday();
             break;
     }
 
-    renderMonth(currentSunday);
-    renderDaysOfWeek(currentSunday);
-
-    return currentSunday;
+    renderMonth();
+    renderDaysOfWeek();
+    // renderCalendar();
 }
 
 function getSunday() {
@@ -50,98 +59,145 @@ function getSunday() {
     const sunday = new Date();
 
     sunday.setDate(today.getDate() - offset);
-
+   
     return sunday
 }
 
-function getNextSunday(sunday) {
-    const nextSunday = new Date(sunday);
+function getNextSunday() {
+    const nextSunday = new Date(CURRENT_SUNDAY);
     nextSunday.setDate(nextSunday.getDate() + 7);
     return nextSunday;
 }
 
-function getPreviousSunday(sunday) {
-    const previousSunday = new Date(sunday);
+function getPreviousSunday() {
+    const previousSunday = new Date(CURRENT_SUNDAY);
     previousSunday.setDate(previousSunday.getDate() - 7);
     return previousSunday;
 }
 
-function renderMonth(sunday) {
+function renderMonth() {
     // Get the node
     const monthNode = document.getElementById('month');
-    
+
     // Get Month for sunday
-    const sundayMonth = months[sunday.getMonth()];
-    
+    const sundayMonth = months[CURRENT_SUNDAY.getMonth()];
+
     // Get Month for saturday
-    const saturday = new Date(sunday);
-    saturday.setDate(sunday.getDate() + 6);    
+    const saturday = new Date(CURRENT_SUNDAY);
+    saturday.setDate(CURRENT_SUNDAY.getDate() + 6);
     const saturdayMonth = months[saturday.getMonth()];
-    
+
     // Compare the two
     // If they are the same, show month
-    if(saturdayMonth === sundayMonth) {
-        monthString = `${sundayMonth} de ${sunday.getFullYear()}` ;
-    
-    // If they are not, concat and show both
+    if (saturdayMonth === sundayMonth) {
+        monthString = `${sundayMonth} de ${CURRENT_SUNDAY.getFullYear()}`;
+
+        // If they are not, concat and show both
     } else {
         monthString = `${sundayMonth}\n\n${saturdayMonth}`;
     }
 
-    
+
     monthNode.innerText = monthString;
 }
 
-function renderDaysOfWeek(sunday) {
+function renderDaysOfWeek() {
     const today = new Date();
-    today.setHours(0,0,0,0);
-    
-    const currentDay = new Date(sunday);
-    currentDay.setHours(0,0,0,0);
-    
+    today.setHours(0, 0, 0, 0);
+
+    const currentDay = new Date(CURRENT_SUNDAY);
+    currentDay.setHours(0, 0, 0, 0);
+
     let dayString;
     for (let i = 0; i <= 6; i++) {
-        dayNode = document.getElementById(`day-${i+1}`);
+        dayNode = document.getElementById(`day-${i + 1}`);
         dayString = `${daysWeek[i]} \n ${currentDay.getDate()}`;
 
         dayNode.innerText = dayString;
 
-        if(currentDay.getTime() == today.getTime()) {
+        if (currentDay.getTime() == today.getTime()) {
             dayNode.classList.add("today");
         } else {
             dayNode.classList.remove("today");
         }
 
-        
+
         currentDay.setDate(currentDay.getDate() + 1);
     };
 
 }
 
-function showDay(divNod){
-    let day =divNod.id.substring(divNod.id.length -1);
-    let dayNode = document.getElementById(`day-${day}`);
-     divNod.title=dayNode.innerText;
-    };
-
-// function clearDay(id_){
-//     let divNode =document.getElementById(id_);
-//     divNode.innerText='';
-// };
-
-function creatForm(divNode){
-    const formNod =document.createElement('form')
-    formNod.innerHTML=`<input type="text" id="pname" name="pname" placeholder="Digite o nome do paciente"> <br> \
-     <input type="text" id="psname" sname="spname" placeholder="Digite o sobrenome">  <br> \
-     <input type="submit" name= ${divNode.id} value="submit" onclick="saveSchedule(this)"></button> ` 
-
-    divNode.appendChild(formNod);
+function showDay(event) {
+    let currentDayNod =event.target;
+    let day = currentDayNod.id.substring(currentDayNod.id.length - 1);
+    let dayHeaderNode = document.getElementById(`day-${day}`);
+    currentDayNod.title = dayHeaderNode.innerText;
 }
 
-function saveSchedule(id_){
-    let divNode =document.getElementById(id_.name);
-    divNode.innerText=id_.name;
-   
 
+function createForm(event){
+    if (FORM_OPEN) {
+        FORM_OPEN = false;
+        const formNode = document.getElementById('appt-form')
+        if (formNode) {
+            formNode.parentElement.removeChild(formNode)
+        }
+    } else {
+        FORM_OPEN = true;
+        const dayNode = event.target
+        dayNode.innerHTML = `<form id="appt-form">
+                                <input type="text" id="pname" name="pname" placeholder="Nome"> 
+                                <br>
+                                <input type="text" id="sname" placeholder="Sobrenome">
+                                <br>
+                                <input type="text" id="procedimento" placeholder="Procedimento">
+                                <br>
+                                <input id="appt-form-submit" type="submit" value="submit">
+                            </form>`
+        document.getElementById('appt-form-submit').onclick = saveSchedule;
+        document.getElementById('pname').onclick = (event) => {
+            event.stopPropagation();
+        };
+        document.getElementById('sname').onclick = (event) => {
+            event.stopPropagation();
+        };
+        document.getElementById('procedimento').onclick = (event) => {
+            event.stopPropagation();
+        };
+    }
+}
 
+function saveSchedule(event) {
+    event.stopPropagation();
+    
+    submitNode = event.target
+    dayNode = submitNode.parentElement.parentElement
+    console.log(dayNode)
+    
+    firstName = document.getElementById('pname').value
+    lastName = document.getElementById('sname').value
+    procedimento = document.getElementById('procedimento').value
+
+    if (firstName.length && procedimento.length){
+        dayNode.innerText = `${firstName} ${lastName} \n ${procedimento}`
+    }
+
+    // SALVA NO BANCO DE DADOS
+
+    // ACHAR O TIMESTAMP EM FORMATO STRING
+    offsets = dayNode.id.split('-d');
+    const sunday = new Date(CURRENT_SUNDAY);
+    // Andou os dias
+    sunday.setDate(sunday.getDate() + parseInt(offsets[1]) - 1)
+    // Adicionar as horas
+    sunday.setHours(parseInt(offsets[0]),0,0,0);
+    // Convert to string
+    const timestamp = sunday.toISOString();
+
+    DATABASE[timestamp] = [ `${firstName} ${lastName}`, `${procedimento}`]
+    console.log(DATABASE)
+
+    
+    createForm();
+    // renderCalendar();
 }
