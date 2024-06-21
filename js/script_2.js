@@ -7,19 +7,20 @@ let CURRENT_SUNDAY;
 
 // Runs when the page loads
 window.onload = () => {
+
     // teste jogando pra variavel pra fazer find depois
+    let AGENDA = loadDadosJson();
+    //mas nao funciona????
+    console.log(AGENDA);
+
+
 
     setWeek('today');
-
-    loadDadosJson().then((agenda) => {
-        DATABASE = agenda ?? {};
-        renderCalendar();
-    });
 
     const previousButtonNode = document.getElementById('previous-week-btn')
     const thisWeekButtonNode = document.getElementById('this-week-btn');
     const nextButtonNode = document.getElementById('next-week-btn');
-    const dayNodes = document.querySelectorAll('.day');
+    const dayNodes =  document.querySelectorAll('.day');
 
     previousButtonNode.onclick = () => {
         setWeek('previous');
@@ -34,9 +35,10 @@ window.onload = () => {
     }
 
 
-    for (let i = 0; i < dayNodes.length; i++) {
+    for (let i = 0; i < dayNodes.length; i++){
         dayNodes[i].onclick = createForm;
         dayNodes[i].onmouseenter = showDay;
+        //preencher com dados quando houver renderDiv()
     }
 
 }
@@ -57,7 +59,7 @@ function setWeek(nav) {
 
     renderMonth();
     renderDaysOfWeek();
-    renderCalendar();
+    // renderCalendar();
 }
 
 function getSunday() {
@@ -66,7 +68,7 @@ function getSunday() {
     const sunday = new Date();
 
     sunday.setDate(today.getDate() - offset);
-
+   
     return sunday
 }
 
@@ -134,35 +136,15 @@ function renderDaysOfWeek() {
 
 }
 
-function renderDay(dayNode, appt) {
-    if (appt?.firstName?.length && appt?.lastName?.length && appt?.procedure?.length) {
-        dayNode.innerText = `${appt.firstName} ${appt.lastName} \n ${appt.procedure}`
-    } else {
-        dayNode.innerText = "";
-    }
-}
-
-function renderCalendar() {
-    // Pegar os Nodes ".day" e iterar um por um
-    const dayNodes = document.querySelectorAll('.day');
-    // Para cada Node
-    for (const dayNode of dayNodes){
-        // Calcula o timestamp
-        offsets = dayNode.id.split('-d');
-        timestamp = seekTimestamp(offsets)
-        // render o day
-        renderDay(dayNode, DATABASE[timestamp]);
-    }
-}
-
 function showDay(event) {
-    let currentDayNod = event.target;
+    let currentDayNod =event.target;
     let day = currentDayNod.id.substring(currentDayNod.id.length - 1);
     let dayHeaderNode = document.getElementById(`day-${day}`);
     currentDayNod.title = dayHeaderNode.innerText;
 }
 
-function createForm(event) {
+
+function createForm(event){
     if (FORM_OPEN) {
         FORM_OPEN = false;
         const formNode = document.getElementById('appt-form')
@@ -196,33 +178,36 @@ function createForm(event) {
 
 function saveSchedule(event) {
     event.stopPropagation();
-    event.preventDefault();
-
+    
     submitNode = event.target
     dayNode = submitNode.parentElement.parentElement
     offsets = dayNode.id.split('-d');
+    // console.log(dayNode)
+    // console.log(offsets)
+    
+    firstName = document.getElementById('pname').value
+    lastName = document.getElementById('sname').value
+    procedimento = document.getElementById('procedimento').value
 
-
-    appt = {
-        "firstName": document.getElementById('pname').value,
-         "lastName": document.getElementById('sname').value,
-        "procedure": document.getElementById('procedimento').value
+    if (firstName.length && procedimento.length){
+        dayNode.innerText = `${firstName} ${lastName} \n ${procedimento}`
     }
 
     timestamp = seekTimestamp(offsets);
 
-
+    
     // SALVA NO BANCO DE DADOS
-    DATABASE[timestamp] = appt;
+    DATABASE[timestamp] = [ `${firstName} ${lastName}`, `${procedimento}`]
 
-    saveDadosJson(DATABASE);
     //console.log(DATABASE)
-    renderCalendar();
-    // createForm();
 
+    
+    createForm();
+    // renderCalendar();
 }
 
-function seekTimestamp(offsets) {
+
+function seekTimestamp(offsets){
     // ACHAR O TIMESTAMP EM FORMATO STRING
 
     const sunday = new Date(CURRENT_SUNDAY);
@@ -230,25 +215,40 @@ function seekTimestamp(offsets) {
     sunday.setDate(sunday.getDate() + parseInt(offsets[1]) - 1)
 
     // Adicionar as horas
-    sunday.setHours(parseInt(offsets[0]), 0, 0, 0);
+    sunday.setHours(parseInt(offsets[0]),0,0,0);
     // Convert to string and return
     return sunday.toISOString();
 
 }
 
 
-async function loadDadosJson() {
 
-    restored_database = localStorage.getItem('DATABASE')
+function loadDadosJson(){
+//assincrona
 
-    if(restored_database) {
-        return JSON.parse(restored_database)
-    } else {
-        return null
-    }
-}
+ fetch("dados.json").then((response)=> {
+        response.json().then((agenda) => {
+            // let ag = agenda;
+            // console.log(ag);
+            // return agenda;
+            //tentando mudar o escopo pra depois fazer o find 
+             
+             
+             
+            //  let found = agenda.scheduled.find( ap => ap.APOIMENT=== '2024-06-20T16:00:00.000Z');
+            //  console.log(found.PACINETE,found.PROC,found.APOIMENT);
+             
+             agenda.scheduled.map((schedule) =>{
+                    console.log(schedule)
+                 });
 
+                // console.log(agenda_return)
+                // return Object.entries(agenda);
+            // })
 
-async function saveDadosJson(new_database){
-    localStorage.setItem('DATABASE', JSON.stringify(new_database))
+        })
+        //tentando retornar pra usar em outra fucntion
+        // return agenda
+
+})
 }
