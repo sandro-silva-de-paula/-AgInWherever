@@ -149,7 +149,7 @@ function renderCalendar() {
     for (const dayNode of dayNodes){
         // Calcula o timestamp
         offsets = dayNode.id.split('-d');
-        timestamp = seekTimestamp(offsets)
+        timestamp = getTimestamp(offsets)
         // render o day
         renderDay(dayNode, DATABASE[timestamp]);
     }
@@ -205,11 +205,11 @@ function saveSchedule(event) {
 
     appt = {
         "firstName": document.getElementById('pname').value,
-         "lastName": document.getElementById('sname').value,
+        "lastName": document.getElementById('sname').value,
         "procedure": document.getElementById('procedimento').value
     }
 
-    timestamp = seekTimestamp(offsets);
+    timestamp = getTimestamp(offsets);
 
 
     // SALVA NO BANCO DE DADOS
@@ -222,7 +222,7 @@ function saveSchedule(event) {
 
 }
 
-function seekTimestamp(offsets) {
+function getTimestamp(offsets) {
     // ACHAR O TIMESTAMP EM FORMATO STRING
 
     const sunday = new Date(CURRENT_SUNDAY);
